@@ -1,0 +1,19 @@
+.nav {
+  background: #212529;
+  height: 50px;
+}
+
+.nav .logo {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+/*# sourceMappingURL=Nav.module.css.map */
