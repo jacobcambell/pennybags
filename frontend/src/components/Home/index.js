@@ -6,8 +6,8 @@ const Home = () => {
         <div className="page">
             <p className={styles.title}>Welcome to iMonopoly</p>
 
-            <Link className={`${styles.btn} ${styles.create}`}>Create Room</Link>
-            <Link className={`${styles.btn} ${styles.join}`}>Join Room</Link>
+            <Link to="/create-room" className={`${styles.btn} ${styles.create}`}>Create Room</Link>
+            <Link to="/join-room" className={`${styles.btn} ${styles.join}`}>Join Room</Link>
         </div>
      );
 }

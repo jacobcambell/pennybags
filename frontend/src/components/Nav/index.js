@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import styles from './Nav.module.css';
 
 const Nav = () => {
     return (
         <div className={styles.nav}>
-            <p className={styles.logo}>iMonopoly</p>
+            <Link to="/" className={styles.logo}>iMonopoly</Link>
         </div>
      );
 }
