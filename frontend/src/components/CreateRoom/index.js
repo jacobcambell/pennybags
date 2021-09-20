@@ -12,10 +12,14 @@ const CreateRoom = () => {
 
     const handleForm = () => {
         socket.emit('create-room', {
-            roomname,
-            roompassword,
+            room_name: roomname,
+            room_password: roompassword,
             yourname
         });
+
+        socket.on('error', (data) => {
+            console.log(data)
+        })
     }
 
     return (
