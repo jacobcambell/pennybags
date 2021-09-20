@@ -25,15 +25,36 @@ io.on('connection', socket => {
         // room_password: A password the user supplies that is required for players to join their room
         // yourname: The display name this user wishes to have
 
-        if(
+        if (
             typeof args.room_name === 'undefined' ||
             typeof args.room_password === 'undefined' ||
             typeof args.yourname === 'undefined'
         ) {
-            socket.emit('error', {message: 'Please only send the required parameters'});
+            socket.emit('error', { message: 'Please only send the required parameters' });
             return;
         }
+
+        // Create a room with this user's information
+        let newRoom = {
+            room_name: args.room_name,
+            players: [
+                { player_name: args.yourname, balance: 1500, secret: makeid(10) }
+            ]
+        };
+
+        rooms.push(newRoom);
     });
 });
 
 server.listen(8000);
+
+function makeid(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}
