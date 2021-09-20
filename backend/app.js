@@ -34,15 +34,22 @@ io.on('connection', socket => {
             return;
         }
 
+        // Generate a secret for this player
+        let SECRET = makeid(10);
+
         // Create a room with this user's information
         let newRoom = {
             room_name: args.room_name,
             players: [
-                { player_name: args.yourname, balance: 1500, secret: makeid(10) }
+                { player_name: args.yourname, balance: 1500, secret: SECRET }
             ]
         };
 
+        // Push this new room we created to the list of rooms
         rooms.push(newRoom);
+
+        // Room was created successfully, we want to send the user their secret that is attached to their player in the new room
+        socket.emit('success', {secret: SECRET});
     });
 });
 

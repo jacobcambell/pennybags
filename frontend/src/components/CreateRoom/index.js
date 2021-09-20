@@ -20,6 +20,10 @@ const CreateRoom = () => {
         socket.on('error', (data) => {
             console.log(data)
         })
+
+        socket.on('success', (data) => {
+            console.log(data)
+        })
     }
 
     return (
