@@ -40,6 +40,7 @@ io.on('connection', socket => {
         // Create a room with this user's information
         let newRoom = {
             room_name: args.room_name,
+            room_password: args.room_password,
             players: [
                 { player_name: args.yourname, balance: 1500, secret: SECRET }
             ]
