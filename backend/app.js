@@ -41,6 +41,7 @@ io.on('connection', socket => {
         let newRoom = {
             room_name: args.room_name,
             room_password: args.room_password,
+            owner: args.yourname,
             players: [
                 { player_name: args.yourname, balance: 1500, secret: SECRET }
             ]
@@ -58,7 +59,7 @@ io.on('connection', socket => {
         let listOfRooms = [];
 
         rooms.map((room) => {
-            listOfRooms.push(room.room_name);
+            listOfRooms.push({room_name: room.room_name, owner: room.owner});
         });
 
         socket.emit('room-list', listOfRooms);
