@@ -1,1 +1,7 @@
-/* No CSS *//*# sourceMappingURL=JoinRoom.module.css.map */
+.roomTile {
+  background: #ddd;
+  padding: 10px;
+  display: block;
+  margin: 5px 0;
+}
+/*# sourceMappingURL=JoinRoom.module.css.map */

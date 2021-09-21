@@ -20,6 +20,14 @@ const JoinRoom = () => {
     return (
         <div className="page">
             <p className="title">Join Room</p>
+
+            {
+                roomList && roomList.map((room, index) => (
+                    <Link key={index} to="/" className={styles.roomTile}>
+                        {room}
+                    </Link>
+                ))
+            }
         </div>
      );
 }

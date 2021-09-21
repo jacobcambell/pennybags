@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,KAAK;CAChB",
     "sources": [
         "JoinRoom.module.scss"
     ],
