@@ -51,6 +51,17 @@ io.on('connection', socket => {
         // Room was created successfully, we want to send the user their secret that is attached to their player in the new room
         socket.emit('success', {secret: SECRET});
     });
+
+    socket.on('list-rooms', (args) => {
+        // Get a list of all the room names
+        let listOfRooms = [];
+
+        rooms.map((room) => {
+            listOfRooms.push(room.room_name);
+        });
+
+        socket.emit('room-list', listOfRooms);
+    })
 });
 
 server.listen(8000);
