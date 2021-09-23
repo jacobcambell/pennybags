@@ -14,8 +14,6 @@ let rooms = [
     //         {player_name: 'Mike', balance: 1500, secret: 'j18fh173n8'}
     //     ]
     // }
-
-
 ];
 
 io.on('connection', socket => {

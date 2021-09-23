@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import styles from './CreateRoom.module.css';
 import io from 'socket.io-client';
+import { useContext } from 'react';
+import { SettingsContext } from '../../SettingsContext';
 
 const CreateRoom = () => {
 
     const socket = io('http://localhost:8000');
+    const { settings, setSettings } = useContext(SettingsContext);
 
     const [roomname, setRoomname] = useState();
     const [roompassword, setRoompassword] = useState();
@@ -12,17 +15,18 @@ const CreateRoom = () => {
     const handleForm = () => {
         socket.emit('create-room', {
             room_name: roomname,
-            room_password: roompassword
+            room_password: roompassword,
+            yourname: settings.name
         });
-
-        socket.on('error', (data) => {
-            console.log(data)
-        })
-
-        socket.on('success', (data) => {
-            console.log(data)
-        })
     }
+
+    socket.on('error', (data) => {
+        console.log(data)
+    })
+
+    socket.on('success', (data) => {
+        console.log(data)
+    })
 
     return (
         <div className="page">
