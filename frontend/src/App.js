@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import CreateRoom from './components/CreateRoom';
+import Game from './components/Game';
 import Home from './components/Home';
 import JoinRoom from './components/JoinRoom';
 import Nav from './components/Nav';
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route exact path="/join-room">
               <JoinRoom></JoinRoom>
+            </Route>
+            <Route exact path="/game">
+              <Game></Game>
             </Route>
           </Switch>
         </Router>
