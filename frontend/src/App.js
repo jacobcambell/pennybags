@@ -23,6 +23,9 @@ function App() {
             <Route exact path="/">
               <SetName></SetName>
             </Route>
+            <Route exact path="/home">
+              <Home></Home>
+            </Route>
             <Route exact path="/create-room">
               <CreateRoom></CreateRoom>
             </Route>
