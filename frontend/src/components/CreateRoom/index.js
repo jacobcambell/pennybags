@@ -8,13 +8,11 @@ const CreateRoom = () => {
 
     const [roomname, setRoomname] = useState();
     const [roompassword, setRoompassword] = useState();
-    const [yourname, setYourname] = useState();
 
     const handleForm = () => {
         socket.emit('create-room', {
             room_name: roomname,
-            room_password: roompassword,
-            yourname
+            room_password: roompassword
         });
 
         socket.on('error', (data) => {
@@ -35,9 +33,6 @@ const CreateRoom = () => {
 
             <p className={styles.label}>Room Password</p>
             <input onChange={(e) => { setRoompassword(e.target.value) }} type="password" className={styles.field} />
-
-            <p className={styles.label}>Your Name</p>
-            <input onChange={(e) => { setYourname(e.target.value) }} type="text" className={styles.field} />
 
             <button onClick={handleForm} className={styles.createBtn}>Create Room</button>
         </div>
