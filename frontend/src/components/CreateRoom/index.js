@@ -21,11 +21,16 @@ const CreateRoom = () => {
     }
 
     socket.on('error', (data) => {
-        console.log(data)
+        alert(data.message)
     })
 
     socket.on('success', (data) => {
-        console.log(data)
+        // We want to update the settings context with the room name and secret the server sends us
+        setSettings({
+            ...settings,
+            room_name: data.room_name,
+            secret: data.secret
+        });
     })
 
     return (

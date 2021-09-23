@@ -11,7 +11,11 @@ import { SettingsContext } from './SettingsContext';
 
 function App() {
 
-  const [settings, setSettings] = useState({ name: null });
+  const [settings, setSettings] = useState({
+    name: 'Player1',
+    room_name: null,
+    secret: null
+  });
 
   return (
     <div className="App">
