@@ -32,6 +32,17 @@ io.on('connection', socket => {
             return;
         }
 
+        // Check if a room with that name already exists
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].room_name === args.room_name){
+                socket.emit('error', {
+                    message: 'Room with that name already exists'
+                });
+
+                return;
+            }
+        }
+
         // Generate a secret for this player
         let SECRET = makeid(10);
 
@@ -48,8 +59,8 @@ io.on('connection', socket => {
         // Push this new room we created to the list of rooms
         rooms.push(newRoom);
 
-        // Room was created successfully, we want to send the user their secret that is attached to their player in the new room
-        socket.emit('success', {secret: SECRET});
+        // Room was created successfully, we want to send the user their secret that is attached to their player in the new room, as well as the room name
+        socket.emit('success', {secret: SECRET, room_name: args.room_name});
     });
 
     socket.on('list-rooms', (args) => {
@@ -76,3 +87,7 @@ function makeid(length) {
     }
     return result;
 }
+
+setInterval(() => {
+    console.log(JSON.stringify(rooms))
+}, 3000);
