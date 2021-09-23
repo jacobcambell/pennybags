@@ -3,17 +3,17 @@ import CreateRoom from './components/CreateRoom';
 import Home from './components/Home';
 import JoinRoom from './components/JoinRoom';
 import Nav from './components/Nav';
+import SetName from './components/SetName';
 
 function App() {
   return (
     <div className="App">
       <Router>
-
         <Nav></Nav>
 
         <Switch>
           <Route exact path="/">
-            <Home></Home>
+            <SetName></SetName>
           </Route>
           <Route exact path="/create-room">
             <CreateRoom></CreateRoom>
