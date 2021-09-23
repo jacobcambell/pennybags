@@ -1,16 +1,26 @@
 import styles from './SetName.module.css';
 import { useContext, useState } from 'react';
 import { SettingsContext } from '../../SettingsContext';
+import { useHistory } from 'react-router-dom';
+
 
 const SetName = () => {
 
+    const [name, setName] = useState('');
     const { settings, setSettings } = useContext(SettingsContext);
+    const history = useHistory();
 
     const updateName = () => {
-        setSettings({...settings, name: name});
-    }
+        // Name should be at least 1 character long
+        if(name.length === 0){
+            return;
+        }
 
-    const [name, setName] = useState('');
+        setSettings({...settings, name: name});
+
+        // Redirect user to home page after they have set a name
+        history.push('/home');
+    }
 
     return (
         <div className="page">
