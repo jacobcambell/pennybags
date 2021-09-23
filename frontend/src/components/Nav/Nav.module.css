@@ -21,4 +21,14 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
+.nav .user {
+  color: white;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 14px;
+}
 /*# sourceMappingURL=Nav.module.css.map */

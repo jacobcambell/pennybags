@@ -14,4 +14,13 @@
         align-items: center;
         justify-content: center;
     }
+
+    .user{
+        color: white;
+        position: absolute;
+        right: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+    }
 }
