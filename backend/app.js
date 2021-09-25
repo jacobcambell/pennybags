@@ -5,16 +5,8 @@ const io = require('socket.io')(server, {
     }
 });
 
-// rooms is an array of room objects, with each room object containing a name,
-// an array of player objects
-let rooms = [
-    // {
-    //     room_name: 'First Room',
-    //     players: [
-    //         {player_name: 'Mike', balance: 1500, secret: 'j18fh173n8'}
-    //     ]
-    // }
-];
+// rooms is an array of room objects
+let rooms = [];
 
 io.on('connection', socket => {
     socket.on('create-room', (args) => {
@@ -53,6 +45,9 @@ io.on('connection', socket => {
             owner: args.yourname,
             players: [
                 { player_name: args.yourname, balance: 1500, secret: SECRET }
+            ],
+            event_feed: [
+                'Room created by ' + args.yourname
             ]
         };
 
