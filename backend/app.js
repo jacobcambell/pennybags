@@ -75,6 +75,8 @@ io.on('connection', socket => {
             socket.emit('error', {
                 message: 'Please specify a room name'
             });
+
+            return;
         }
 
         // Get event feed for the requested room name
@@ -102,6 +104,8 @@ io.on('connection', socket => {
             socket.emit('error', {
                 message: 'Please send the correct required parameters'
             });
+
+            return;
         }
 
         // Loop through all the rooms until we find the room with the given room name
@@ -127,6 +131,8 @@ io.on('connection', socket => {
             socket.emit('error', {
                 message: 'Please send a room name to list players'
             });
+
+            return;
         }
 
         // Loop through the rooms until we find the room with the requested name
@@ -146,6 +152,39 @@ io.on('connection', socket => {
 
                 // Send the player list for the requested room (player_name, balance) to the client
                 socket.emit('send-player-list', newPlayerList);
+            }
+        }
+    })
+
+    socket.on('join-room', (args) => {
+        // Makes a player join a room
+
+        if (
+            typeof args.player_name === 'undefined' ||
+            typeof args.room_name === 'undefined'
+        ) {
+            socket.emit('error', {
+                message: 'Room with that name already exists'
+            });
+
+            return;
+        }
+
+        // Generate a secret for this player
+        let SECRET = makeid(10);
+
+        // We want to loop through the rooms until we find the room with the specified name
+        for (let i = 0; i < rooms.length; i++) {
+            if(rooms[i].room_name === args.room_name) {
+                // We found the right room. Now we want to add this player to the players array
+                rooms[i].players.push({
+                    player_name: args.player_name,
+                    balance: 1500,
+                    secret: SECRET
+                });
+
+                // Tell the player they successfully joined the room and give them their secret and room name
+                socket.emit('success', { secret: SECRET, room_name: args.room_name });
             }
         }
     })
