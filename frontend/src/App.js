@@ -13,7 +13,7 @@ import { SettingsContext } from './SettingsContext';
 function App() {
 
   const [settings, setSettings] = useState({
-    player_name: 'Player1',
+    player_name: null,
     room_name: null,
     secret: null
   });
