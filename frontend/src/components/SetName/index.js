@@ -16,7 +16,7 @@ const SetName = () => {
             return;
         }
 
-        setSettings({...settings, name: name});
+        setSettings({...settings, player_name: name});
 
         // Redirect user to home page after they have set a name
         history.push('/home');
@@ -27,7 +27,7 @@ const SetName = () => {
             <p className={styles.title}>Welcome to iMonopoly</p>
             <p className={styles.desc}>To get started, please enter your display name.</p>
 
-            <input onChange={(e) => { setName(e.target.value) }}type="text" className={styles.field} placeholder="Your Name" />
+            <input onChange={(e) => { setName(e.target.value) }} type="text" className={styles.field} placeholder="Your Name" />
 
             <button onClick={updateName} className={styles.btn}>Let's Go</button>
         </div>

@@ -19,7 +19,7 @@ const CreateRoom = () => {
         socket.emit('create-room', {
             room_name: roomname,
             room_password: roompassword,
-            yourname: settings.name
+            yourname: settings.player_name
         });
     }
 
