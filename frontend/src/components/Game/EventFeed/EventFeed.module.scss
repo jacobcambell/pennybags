@@ -1,13 +1,19 @@
 .title{
     font-weight: bold;
     font-size: 18px;
+    width: 90%;
+    margin: auto;
+    display: block;
+    text-align: left;
 }
 
 .event{
     background: rgb(84, 84, 84);
     padding: 10px;
     color: white;
-    margin: 10px 0;
+    margin: 10px auto;
+    width: 90%;
+    box-sizing: border-box;
 
     i{
         padding-right: 10px;

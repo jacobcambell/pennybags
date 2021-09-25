@@ -1,23 +1,30 @@
 .title{
     font-size: 20px;
     padding-bottom: 25px;
+    text-align: center;
 }
 
 .label{
     font-weight: bold;
+    text-align: center;
 }
 
 .field{
     display: block;
-    width: 50%;
+    width: 80%;
     margin: 5px auto 25px;
     padding: 5px;
 }
 
 .createBtn{
     background: #38b000;
+    width: 80%;
+    display: block;
     color: white;
-    padding: 5px;
+    text-align: center;
+    margin: 15px auto;
+    padding: 10px 0;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
 }
