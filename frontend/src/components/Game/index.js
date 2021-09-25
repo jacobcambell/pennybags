@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { SettingsContext } from "../../SettingsContext";
 import Balance from "./Balance";
 import EventFeed from "./EventFeed";
+import PlayerList from "./PlayerList";
 
 const Game = () => {
     const { settings, setSettings } = useContext(SettingsContext);
@@ -21,6 +22,7 @@ const Game = () => {
         <div className="page">
             <EventFeed></EventFeed>
             <Balance></Balance>
+            <PlayerList></PlayerList>
         </div>
     );
 }

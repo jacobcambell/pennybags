@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,SAAS;EACjB,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,MAAM,CAAA;EACF,WAAW,EAAE,IAAI;EACjB,SAAS,EAAE,IAAI;CAClB",
+    "sources": [
+        "PlayerList.module.scss"
+    ],
+    "names": [],
+    "file": "PlayerList.module.css"
+}
