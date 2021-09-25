@@ -1,1 +1,16 @@
-/* No CSS *//*# sourceMappingURL=EventFeed.module.css.map */
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.event {
+  background: #545454;
+  padding: 10px;
+  color: white;
+  margin: 10px 0;
+}
+
+.event i {
+  padding-right: 10px;
+}
+/*# sourceMappingURL=EventFeed.module.css.map */

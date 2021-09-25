@@ -5,10 +5,6 @@ import EventFeed from "./EventFeed";
 const Game = () => {
     const { settings, setSettings } = useContext(SettingsContext);
 
-    useEffect(() => {
-        console.log(settings)
-    }, []);
-
     return (
         <div className="page">
             <EventFeed></EventFeed>
