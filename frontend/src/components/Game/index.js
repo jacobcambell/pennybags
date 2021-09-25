@@ -20,6 +20,7 @@ const Game = () => {
 
     return (
         <div className="page">
+            <p>State values: {`Name: ${settings.player_name} | Room: ${settings.room_name} Secret: ${settings.secret}`}</p>
             <EventFeed></EventFeed>
             <Balance></Balance>
             <PlayerList></PlayerList>

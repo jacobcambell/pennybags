@@ -1,5 +1,5 @@
 import styles from './SetName.module.css';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { SettingsContext } from '../../SettingsContext';
 import { useHistory } from 'react-router-dom';
 
@@ -12,15 +12,24 @@ const SetName = () => {
 
     const updateName = () => {
         // Name should be at least 1 character long
-        if(name.length === 0){
+        if (name.length === 0) {
             return;
         }
 
-        setSettings({...settings, player_name: name});
+        setSettings({ ...settings, player_name: name });
 
         // Redirect user to home page after they have set a name
         history.push('/home');
     }
+
+    useEffect(() => {
+        if (
+            settings.player_name !== null ||
+            settings.room_name !== null
+        ) {
+            history.push('/game');
+        }
+    }, []);
 
     return (
         <div className="page">
@@ -31,7 +40,7 @@ const SetName = () => {
 
             <button onClick={updateName} className={styles.btn}>Let's Go</button>
         </div>
-     );
+    );
 }
 
 export default SetName;
