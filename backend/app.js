@@ -82,13 +82,41 @@ io.on('connection', socket => {
         let event_feed = [];
 
         for (let i = 0; i < rooms.length; i++) {
-            if(rooms[i].room_name === args.room_name){
+            if (rooms[i].room_name === args.room_name) {
                 event_feed = rooms[i].event_feed;
             }
         }
 
         // Send the event feed back to the client
         socket.emit('send-event-feed', event_feed);
+    })
+
+    socket.on('get-balance-for-player', (args) => {
+        // Returns the balance of the player requested
+        // Player should send their room name, and a player name
+
+        if (
+            typeof args.room_name === 'undefined' ||
+            typeof args.player_name === 'undefined'
+        ) {
+            socket.emit('error', {
+                message: 'Please send the correct required parameters'
+            });
+        }
+
+        // Loop through all the rooms until we find the room with the given room name
+        for (let i = 0; i < rooms.length; i++) {
+            if (rooms[i].room_name === args.room_name) {
+                // We found the requested room
+                // Now we want to find a player in this room that matches the requested name
+                for (let k = 0; k < rooms[i].players.length; k++) {
+                    if (rooms[i].players[k].player_name === args.player_name) {
+                        // We found the player in the room the user requested. Send the client this player's balance
+                        socket.emit('return-player-balance', { player_name: args.player_name, balance: rooms[i].players[k].balance })
+                    }
+                }
+            }
+        }
     })
 });
 
@@ -104,7 +132,3 @@ function makeid(length) {
     }
     return result;
 }
-
-setInterval(() => {
-    console.log(JSON.stringify(rooms))
-}, 3000);
