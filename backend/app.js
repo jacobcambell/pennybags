@@ -118,6 +118,37 @@ io.on('connection', socket => {
             }
         }
     })
+
+    socket.on('list-players-in-room', (args) => {
+        // Returns a list of players with their balances
+        if (
+            typeof args.room_name === 'undefined'
+        ) {
+            socket.emit('error', {
+                message: 'Please send a room name to list players'
+            });
+        }
+
+        // Loop through the rooms until we find the room with the requested name
+        for (let i = 0; i < rooms.length; i++) {
+            if (rooms[i].room_name === args.room_name) {
+                // We found the requested room
+                // Now we want to build a new array of players from this room that does not contain their secrets
+
+                let newPlayerList = [];
+
+                for (let k = 0; k < rooms[i].players.length; k++) {
+                    newPlayerList.push({
+                        player_name: rooms[i].players[k].player_name,
+                        balance: rooms[i].players[k].balance
+                    });
+                }
+
+                // Send the player list for the requested room (player_name, balance) to the client
+                socket.emit('send-player-list', newPlayerList);
+            }
+        }
+    })
 });
 
 server.listen(8000);
