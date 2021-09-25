@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { SettingsContext } from "../../SettingsContext";
+import Balance from "./Balance";
 import EventFeed from "./EventFeed";
 
 const Game = () => {
@@ -8,6 +9,7 @@ const Game = () => {
     return (
         <div className="page">
             <EventFeed></EventFeed>
+            <Balance></Balance>
         </div>
      );
 }
