@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { SettingsContext } from "../../SettingsContext";
+import EventFeed from "./EventFeed";
 
 const Game = () => {
     const { settings, setSettings } = useContext(SettingsContext);
@@ -7,9 +8,10 @@ const Game = () => {
     useEffect(() => {
         console.log(settings)
     }, []);
+
     return (
         <div className="page">
-            game
+            <EventFeed></EventFeed>
         </div>
      );
 }
