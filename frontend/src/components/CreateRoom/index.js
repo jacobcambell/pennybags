@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import styles from './CreateRoom.module.css';
+import { useState, useContext } from 'react';
 import io from 'socket.io-client';
-import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { SettingsContext } from '../../SettingsContext';
+
+import styles from './CreateRoom.module.css';
 
 const CreateRoom = () => {
 
@@ -11,6 +12,8 @@ const CreateRoom = () => {
 
     const [roomname, setRoomname] = useState();
     const [roompassword, setRoompassword] = useState();
+
+    const history = useHistory();
 
     const handleForm = () => {
         socket.emit('create-room', {
@@ -31,6 +34,9 @@ const CreateRoom = () => {
             room_name: data.room_name,
             secret: data.secret
         });
+
+        // Redirect user to the game screen
+        history.push('/game');
     })
 
     return (
