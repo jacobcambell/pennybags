@@ -1,6 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
-import io from 'socket.io-client';
 
 import styles from './JoinRoom.module.css';
 
@@ -8,9 +7,8 @@ import { SettingsContext } from '../../SettingsContext';
 
 const JoinRoom = () => {
 
-    const socket = io('http://localhost:8000');
     const [roomList, setRoomList] = useState([]);
-    const { settings, setSettings } = useContext(SettingsContext);
+    const { settings, setSettings, socket } = useContext(SettingsContext);
     const history = useHistory();
 
     useEffect(() => {

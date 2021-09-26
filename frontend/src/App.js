@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import CreateRoom from './components/CreateRoom';
+import Debug from './components/Debug';
 import Game from './components/Game';
 import Home from './components/Home';
 import JoinRoom from './components/JoinRoom';
@@ -18,9 +20,12 @@ function App() {
     secret: null
   });
 
+  // Socket that is used accross our entire application
+  const socket = io('http://localhost:8000');
+
   return (
     <div className="App">
-      <SettingsContext.Provider value={{ settings, setSettings }}>
+      <SettingsContext.Provider value={{ settings, setSettings, socket }}>
         <Router>
           <Nav></Nav>
 
@@ -41,6 +46,8 @@ function App() {
               <Game></Game>
             </Route>
           </Switch>
+
+          <Debug></Debug>
         </Router>
       </SettingsContext.Provider>
     </div>

@@ -1,0 +1,14 @@
+.debug {
+  background: #252525;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.debug p {
+  color: white;
+  display: block;
+  font-size: 14px;
+}
+/*# sourceMappingURL=Debug.module.css.map */

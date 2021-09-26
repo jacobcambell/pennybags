@@ -2,12 +2,9 @@ import styles from './EventFeed.module.css';
 import { useContext, useEffect, useState } from 'react';
 import { SettingsContext } from '../../../SettingsContext';
 
-import io from 'socket.io-client';
-
 const EventFeed = () => {
 
-    const { settings, setSettings } = useContext(SettingsContext);
-    const socket = io('http://localhost:8000');
+    const { settings, setSettings, socket } = useContext(SettingsContext);
     const [eventFeed, setEventFeed] = useState([]);
 
     useEffect(() => {

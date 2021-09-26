@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACH,UAAU,EAAE,OAAe;EAC3B,QAAQ,EAAE,KAAK;EACf,MAAM,EAAE,CAAC;EACT,IAAI,EAAE,CAAC;EACP,KAAK,EAAE,IAAI;CAOd;;AAZD,AAOI,MAPE,CAOF,CAAC,CAAC;EACE,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,KAAK;EACd,SAAS,EAAE,IAAI;CAClB",
+    "sources": [
+        "Debug.module.scss"
+    ],
+    "names": [],
+    "file": "Debug.module.css"
+}

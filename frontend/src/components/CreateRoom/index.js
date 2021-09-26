@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react';
-import io from 'socket.io-client';
 import { useHistory } from 'react-router-dom';
 import { SettingsContext } from '../../SettingsContext';
 
@@ -7,8 +6,7 @@ import styles from './CreateRoom.module.css';
 
 const CreateRoom = () => {
 
-    const socket = io('http://localhost:8000');
-    const { settings, setSettings } = useContext(SettingsContext);
+    const { settings, setSettings, socket } = useContext(SettingsContext);
 
     const [roomname, setRoomname] = useState();
     const [roompassword, setRoompassword] = useState();
@@ -51,7 +49,7 @@ const CreateRoom = () => {
 
             <button onClick={handleForm} className={styles.createBtn}>Create Room</button>
         </div>
-     );
+    );
 }
 
 export default CreateRoom;
