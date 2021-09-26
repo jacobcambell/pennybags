@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <SettingsContext.Provider value={{settings, setSettings}}>
+      <SettingsContext.Provider value={{ settings, setSettings }}>
         <Router>
           <Nav></Nav>
 
