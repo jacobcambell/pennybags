@@ -29,9 +29,6 @@ const CreateRoom = () => {
                 room_name: data.room_name,
                 secret: data.secret
             });
-
-            // Redirect user to the game screen
-            history.push('/game');
         })
     }, []);
 

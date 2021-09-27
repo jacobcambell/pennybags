@@ -23,8 +23,6 @@ const JoinRoom = () => {
                 room_name: data.room_name,
                 secret: data.secret
             });
-
-            history.push('/game');
         })
 
         socket.emit('list-rooms');

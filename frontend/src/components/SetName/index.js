@@ -20,19 +20,7 @@ const SetName = () => {
 
         // Save player name to local storage
         localStorage.setItem('player_name', name);
-
-        // Redirect user to home page after they have set a name
-        history.push('/home');
     }
-
-    useEffect(() => {
-        if (
-            localStorage.getItem('player_name') !== null ||
-            typeof settings.room_name !== 'undefined'
-        ) {
-            history.push('/game');
-        }
-    }, []);
 
     return (
         <div className="page">

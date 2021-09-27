@@ -9,15 +9,6 @@ const Game = () => {
     const { settings, setSettings, socket } = useContext(SettingsContext);
     const history = useHistory();
 
-    useEffect(() => {
-        if (
-            localStorage.getItem('player_name') === null ||
-            typeof settings.room_name === 'undefined'
-        ) {
-            history.push('/');
-        }
-    }, []);
-
     return (
         <div className="page">
             <EventFeed></EventFeed>
