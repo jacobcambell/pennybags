@@ -10,11 +10,6 @@ let rooms = [];
 
 io.on('connection', socket => {
     socket.on('create-room', (args) => {
-        // Params:
-        // room_name: The name of the room the user wishes to create
-        // room_password: A password the user supplies that is required for players to join their room
-        // yourname: The display name this user wishes to have
-
         if (
             typeof args.room_name === 'undefined' ||
             typeof args.room_password === 'undefined' ||
@@ -57,6 +52,9 @@ io.on('connection', socket => {
 
         // Room was created successfully, we want to send the user their secret that is attached to their player in the new room, as well as the room name
         socket.emit('success', { secret: SECRET, room_name: args.room_name });
+
+        // Subscribe this socket to the room with the exact same name
+        socket.join(args.room_name);
     });
 
     socket.on('list-rooms', (args) => {
@@ -164,7 +162,7 @@ io.on('connection', socket => {
             typeof args.room_name === 'undefined'
         ) {
             socket.emit('error', {
-                message: 'Room with that name already exists'
+                message: 'Please send the required information'
             });
 
             return;
@@ -175,7 +173,7 @@ io.on('connection', socket => {
 
         // We want to loop through the rooms until we find the room with the specified name
         for (let i = 0; i < rooms.length; i++) {
-            if(rooms[i].room_name === args.room_name) {
+            if (rooms[i].room_name === args.room_name) {
                 // We found the right room. Now we want to add this player to the players array
                 rooms[i].players.push({
                     player_name: args.player_name,
@@ -185,6 +183,10 @@ io.on('connection', socket => {
 
                 // Tell the player they successfully joined the room and give them their secret and room name
                 socket.emit('success', { secret: SECRET, room_name: args.room_name });
+
+                // Broadcast to all other players in this room the new players object
+                io.sockets.in(args.room_name).emit('boom', { message: args.player_name + ' joined' });
+                break;
             }
         }
     })
