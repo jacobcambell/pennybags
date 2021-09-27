@@ -12,6 +12,9 @@ import SetName from './components/SetName';
 
 import { SettingsContext } from './SettingsContext';
 
+// Socket that is used accross our entire application
+const socket = io('http://localhost:8000');
+
 function App() {
 
   const [settings, setSettings] = useState({
@@ -19,9 +22,6 @@ function App() {
     // room_name: null,
     // secret: null
   });
-
-  // Socket that is used accross our entire application
-  const socket = io('http://localhost:8000');
 
   useEffect(() => {
     socket.on('error', (data) => {
