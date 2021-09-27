@@ -32,7 +32,7 @@ const JoinRoom = () => {
 
     const handleJoin = (room_name) => {
         socket.emit('join-room', {
-            player_name: settings.player_name,
+            player_name: localStorage.getItem('player_name'),
             room_name: room_name
         })
     }
@@ -48,8 +48,6 @@ const JoinRoom = () => {
                     </div>
                 ))
             }
-
-            <p>Joining room as {settings.player_name} </p>
         </div>
     );
 }

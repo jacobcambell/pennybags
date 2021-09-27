@@ -17,7 +17,7 @@ const CreateRoom = () => {
         socket.emit('create-room', {
             room_name: roomname,
             room_password: roompassword,
-            yourname: settings.player_name
+            yourname: localStorage.getItem('player_name')
         });
     }
 

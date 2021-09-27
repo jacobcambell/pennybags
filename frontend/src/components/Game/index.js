@@ -11,7 +11,7 @@ const Game = () => {
 
     useEffect(() => {
         if (
-            typeof settings.player_name === 'undefined' ||
+            localStorage.getItem('player_name') === null ||
             typeof settings.room_name === 'undefined'
         ) {
             history.push('/');

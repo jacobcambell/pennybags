@@ -15,7 +15,7 @@ const Balance = () => {
         })
 
         socket.emit('get-balance-for-player', {
-            player_name: settings.player_name,
+            player_name: localStorage.getItem('player_name'),
             room_name: settings.room_name
         });
     }, []);

@@ -8,7 +8,7 @@ const Debug = () => {
 
     return (
         <div className={styles.debug}>
-            <p>{`Player Name: ` + settings.player_name}</p>
+            <p>{`Player Name: ` + localStorage.getItem('player_name')}</p>
             <p>{`Room Name: ` + settings.room_name}</p>
             <p>{`Secret: ` + settings.secret}</p>
             <p>{`Socket: ` + socket.id}</p>
