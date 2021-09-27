@@ -6,13 +6,13 @@ import EventFeed from "./EventFeed";
 import PlayerList from "./PlayerList";
 
 const Game = () => {
-    const { settings, setSettings } = useContext(SettingsContext);
+    const { settings, setSettings, socket } = useContext(SettingsContext);
     const history = useHistory();
 
     useEffect(() => {
         if (
-            settings.player_name === null ||
-            settings.room_name === null
+            typeof settings.player_name === 'undefined' ||
+            typeof settings.room_name === 'undefined'
         ) {
             history.push('/');
         }
@@ -20,7 +20,6 @@ const Game = () => {
 
     return (
         <div className="page">
-            <p>State values: {`Name: ${settings.player_name} | Room: ${settings.room_name} Secret: ${settings.secret}`}</p>
             <EventFeed></EventFeed>
             <Balance></Balance>
             <PlayerList></PlayerList>

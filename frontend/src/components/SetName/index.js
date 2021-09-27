@@ -24,8 +24,8 @@ const SetName = () => {
 
     useEffect(() => {
         if (
-            settings.player_name !== null ||
-            settings.room_name !== null
+            typeof settings.player_name !== 'undefined' ||
+            typeof settings.room_name !== 'undefined'
         ) {
             history.push('/game');
         }

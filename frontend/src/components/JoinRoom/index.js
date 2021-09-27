@@ -12,12 +12,23 @@ const JoinRoom = () => {
     const history = useHistory();
 
     useEffect(() => {
+        socket.on('room-list', (data) => {
+            setRoomList(data);
+        })
+
+        socket.on('success', (data) => {
+            // Update the state with their secret and room name
+            setSettings({
+                ...settings,
+                room_name: data.room_name,
+                secret: data.secret
+            });
+
+            history.push('/game');
+        })
+
         socket.emit('list-rooms');
     }, []);
-
-    socket.on('room-list', (data) => {
-        setRoomList(data);
-    })
 
     const handleJoin = (room_name) => {
         socket.emit('join-room', {
@@ -25,17 +36,6 @@ const JoinRoom = () => {
             room_name: room_name
         })
     }
-
-    socket.on('success', (data) => {
-        // Update the state with their secret and room name
-        setSettings({
-            ...settings,
-            room_name: data.room_name,
-            secret: data.secret
-        });
-
-        history.push('/game');
-    })
 
     return (
         <div className="page">

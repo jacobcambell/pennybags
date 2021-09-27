@@ -8,13 +8,13 @@ const EventFeed = () => {
     const [eventFeed, setEventFeed] = useState([]);
 
     useEffect(() => {
+        socket.on('send-event-feed', (data) => {
+            setEventFeed(data);
+        })
+
         // Load the existing event feed for this room
         socket.emit('get-event-feed', { room_name: settings.room_name });
     }, []);
-
-    socket.on('send-event-feed', (data) => {
-        setEventFeed(data);
-    })
 
     return (
         <div>

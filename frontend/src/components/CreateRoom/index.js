@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { SettingsContext } from '../../SettingsContext';
 
@@ -21,21 +21,19 @@ const CreateRoom = () => {
         });
     }
 
-    socket.on('error', (data) => {
-        alert(data.message)
-    })
+    useEffect(() => {
+        socket.on('success', (data) => {
+            // We want to update the settings context with the room name and secret the server sends us
+            setSettings({
+                ...settings,
+                room_name: data.room_name,
+                secret: data.secret
+            });
 
-    socket.on('success', (data) => {
-        // We want to update the settings context with the room name and secret the server sends us
-        setSettings({
-            ...settings,
-            room_name: data.room_name,
-            secret: data.secret
-        });
-
-        // Redirect user to the game screen
-        history.push('/game');
-    })
+            // Redirect user to the game screen
+            history.push('/game');
+        })
+    }, []);
 
     return (
         <div className="page">

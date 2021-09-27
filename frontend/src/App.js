@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import io from 'socket.io-client';
 
@@ -15,13 +15,19 @@ import { SettingsContext } from './SettingsContext';
 function App() {
 
   const [settings, setSettings] = useState({
-    player_name: null,
-    room_name: null,
-    secret: null
+    // player_name: null,
+    // room_name: null,
+    // secret: null
   });
 
   // Socket that is used accross our entire application
   const socket = io('http://localhost:8000');
+
+  useEffect(() => {
+    socket.on('error', (data) => {
+      alert('Error: ' + data.message);
+    })
+  }, []);
 
   return (
     <div className="App">

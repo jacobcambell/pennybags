@@ -10,15 +10,15 @@ const Balance = () => {
 
     useEffect(() => {
         // Load the player's current balance
+        socket.on('return-player-balance', (data) => {
+            setBalance(data.balance);
+        })
+
         socket.emit('get-balance-for-player', {
             player_name: settings.player_name,
             room_name: settings.room_name
         });
     }, []);
-
-    socket.on('return-player-balance', (data) => {
-        setBalance(data.balance);
-    })
 
     return (
         <div>
