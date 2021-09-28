@@ -36,7 +36,7 @@ io.on('connection', socket => {
             room_password: args.room_password,
             owner: args.yourname,
             players: [
-                { player_name: args.yourname, balance: 1500 }
+                { player_name: args.yourname, balance: 1500, sid: socket.id }
             ],
             event_feed: [
                 'Room created by ' + args.yourname,
@@ -168,10 +168,28 @@ io.on('connection', socket => {
         // We want to loop through the rooms until we find the room with the specified name
         for (let i = 0; i < rooms.length; i++) {
             if (rooms[i].room_name === args.room_name) {
-                // We found the right room. Now we want to add this player to the players array
+                // We found the right room. First we want to check if this person's socket id already exists in the room
+                for (let k = 0; k < rooms[i].players.length; k++) {
+                    if (rooms[i].players[k].sid === socket.id) {
+                        // Their socket id is already in this room, so we'll tell them they successfully joined but won't process anything from here since they are already in the room
+                        socket.emit('success-joinroom', { room_name: args.room_name });
+                        return;
+                    }
+                }
+
+                // Next, check if someone with that name is already in the room
+                for (let k = 0; k < rooms[i].players.length; k++) {
+                    if (rooms[i].players[k].player_name === args.player_name) {
+                        socket.emit('error', { message: 'Someone in this room already has the name you chose. Please choose a different name' });
+                        return;
+                    }
+                }
+
+                // Their socket id was not found in the room and nobody exists in this room with that name, so add them to it
                 rooms[i].players.push({
                     player_name: args.player_name,
-                    balance: 1500
+                    balance: 1500,
+                    sid: socket.id
                 });
 
                 // Add join message to this room's event feed
@@ -187,8 +205,6 @@ io.on('connection', socket => {
                 socket.emit('success-joinroom', { room_name: args.room_name });
             }
         }
-
-
     })
 });
 
