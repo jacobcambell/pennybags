@@ -182,7 +182,10 @@ io.on('connection', socket => {
                 });
 
                 // Tell the player they successfully joined the room and give them their secret and room name
-                socket.emit('success', { secret: SECRET, room_name: args.room_name });
+                socket.emit('success-joinroom', { secret: SECRET, room_name: args.room_name });
+
+                // Subscribe the new user to the room they joined
+                socket.join(args.room_name);
             }
         }
 

@@ -12,9 +12,16 @@ const JoinRoom = () => {
     const history = useHistory();
 
     useEffect(() => {
-        socket.on('room-list', (data) => {
+        socket.off('room-list').on('room-list', (data) => {
             setRoomList(data);
-        })
+        });
+
+        socket.off('success-joinroom').on('success-joinroom', (data) => {
+            localStorage.setItem('room_name', data.room_name);
+            localStorage.setItem('secret', data.secret);
+
+            history.push('/game');
+        });
 
         socket.emit('list-rooms');
     }, []);
