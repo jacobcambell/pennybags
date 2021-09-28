@@ -12,6 +12,10 @@ const EventFeed = () => {
             setEventFeed(data);
         })
 
+        socket.off('newEventFeed').on('newEventFeed', (data) => {
+            setEventFeed(data);
+        })
+
         // Load the existing event feed for this room
         socket.emit('get-event-feed', { room_name: localStorage.getItem('room_name') });
     }, []);
