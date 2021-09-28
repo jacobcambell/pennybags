@@ -30,16 +30,13 @@ io.on('connection', socket => {
             }
         }
 
-        // Generate a secret for this player
-        let SECRET = makeid(10);
-
         // Create a room with this user's information
         let newRoom = {
             room_name: args.room_name,
             room_password: args.room_password,
             owner: args.yourname,
             players: [
-                { player_name: args.yourname, balance: 1500, secret: SECRET }
+                { player_name: args.yourname, balance: 1500 }
             ],
             event_feed: [
                 'Room created by ' + args.yourname,
@@ -50,8 +47,8 @@ io.on('connection', socket => {
         // Push this new room we created to the list of rooms
         rooms.push(newRoom);
 
-        // Room was created successfully, we want to send the user their secret that is attached to their player in the new room, as well as the room name
-        socket.emit('success-createroom', { secret: SECRET, room_name: args.room_name });
+        // Room was created successfully, we want to send the user their room name
+        socket.emit('success-createroom', { room_name: args.room_name });
 
         // Subscribe this socket to the room with the exact same name
         socket.join(args.room_name);
@@ -137,7 +134,7 @@ io.on('connection', socket => {
         for (let i = 0; i < rooms.length; i++) {
             if (rooms[i].room_name === args.room_name) {
                 // We found the requested room
-                // Now we want to build a new array of players from this room that does not contain their secrets
+                // Now we want to build a new array of players from this room that does not contain their secrets (Note - secrets was an old variable, might not need this anymore)
 
                 let newPlayerList = [];
 
@@ -168,17 +165,13 @@ io.on('connection', socket => {
             return;
         }
 
-        // Generate a secret for this player
-        let SECRET = makeid(10);
-
         // We want to loop through the rooms until we find the room with the specified name
         for (let i = 0; i < rooms.length; i++) {
             if (rooms[i].room_name === args.room_name) {
                 // We found the right room. Now we want to add this player to the players array
                 rooms[i].players.push({
                     player_name: args.player_name,
-                    balance: 1500,
-                    secret: SECRET
+                    balance: 1500
                 });
 
                 // Add join message to this room's event feed
@@ -190,8 +183,8 @@ io.on('connection', socket => {
                 // Subscribe the new user to the room they joined
                 socket.join(args.room_name);
 
-                // Tell the player they successfully joined the room and give them their secret and room name
-                socket.emit('success-joinroom', { secret: SECRET, room_name: args.room_name });
+                // Tell the player they successfully joined the room and give them their room name
+                socket.emit('success-joinroom', { room_name: args.room_name });
             }
         }
 
@@ -200,14 +193,3 @@ io.on('connection', socket => {
 });
 
 server.listen(8000);
-
-function makeid(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
-}

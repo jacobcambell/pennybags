@@ -18,7 +18,6 @@ const JoinRoom = () => {
 
         socket.off('success-joinroom').on('success-joinroom', (data) => {
             localStorage.setItem('room_name', data.room_name);
-            localStorage.setItem('secret', data.secret);
 
             history.push('/game');
         });

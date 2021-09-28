@@ -10,7 +10,7 @@ const Game = () => {
     const history = useHistory();
 
     useEffect(() => {
-        if (localStorage.getItem('player_name') === null || localStorage.getItem('room_name') === null || localStorage.getItem('secret') === null) {
+        if (localStorage.getItem('player_name') === null || localStorage.getItem('room_name') === null) {
             history.push('/');
         }
     }, []);

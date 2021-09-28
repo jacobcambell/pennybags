@@ -10,7 +10,6 @@ const Debug = () => {
         <div className={styles.debug}>
             <p>{`Player Name: ` + localStorage.getItem('player_name')}</p>
             <p>{`Room Name: ` + localStorage.getItem('room_name')}</p>
-            <p>{`Secret: ` + localStorage.getItem('secret')}</p>
             <p>{`Socket: ` + socket.id}</p>
         </div>
     );
