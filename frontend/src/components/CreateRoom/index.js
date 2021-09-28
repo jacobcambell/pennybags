@@ -22,13 +22,9 @@ const CreateRoom = () => {
     }
 
     useEffect(() => {
-        socket.on('success', (data) => {
-            // We want to update the settings context with the room name and secret the server sends us
-            setSettings({
-                ...settings,
-                room_name: data.room_name,
-                secret: data.secret
-            });
+        socket.off('success-createroom').on('success-createroom', (data) => {
+            localStorage.setItem('room_name', data.room_name);
+            localStorage.setItem('secret', data.secret);
         })
     }, []);
 

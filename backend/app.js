@@ -51,7 +51,7 @@ io.on('connection', socket => {
         rooms.push(newRoom);
 
         // Room was created successfully, we want to send the user their secret that is attached to their player in the new room, as well as the room name
-        socket.emit('success', { secret: SECRET, room_name: args.room_name });
+        socket.emit('success-createroom', { secret: SECRET, room_name: args.room_name });
 
         // Subscribe this socket to the room with the exact same name
         socket.join(args.room_name);
@@ -183,12 +183,10 @@ io.on('connection', socket => {
 
                 // Tell the player they successfully joined the room and give them their secret and room name
                 socket.emit('success', { secret: SECRET, room_name: args.room_name });
-
-                // Broadcast to all other players in this room the new players object
-                io.sockets.in(args.room_name).emit('boom', { message: args.player_name + ' joined' });
-                break;
             }
         }
+
+
     })
 });
 

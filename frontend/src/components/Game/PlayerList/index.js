@@ -9,11 +9,11 @@ const PlayerList = () => {
     const [players, setPlayers] = useState();
 
     useEffect(() => {
-        socket.on('send-player-list', (data) => {
+        socket.off('send-player-list').on('send-player-list', (data) => {
             setPlayers(data);
         })
 
-        socket.emit('list-players-in-room', { room_name: settings.room_name });
+        socket.emit('list-players-in-room', { room_name: localStorage.getItem('room_name') });
     }, []);
 
     return (
