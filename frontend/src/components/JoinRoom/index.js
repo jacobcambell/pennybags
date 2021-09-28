@@ -12,6 +12,11 @@ const JoinRoom = () => {
     const history = useHistory();
 
     useEffect(() => {
+        if (localStorage.getItem('player_name') === null) {
+            history.push('/');
+            return;
+        }
+
         socket.off('room-list').on('room-list', (data) => {
             setRoomList(data);
         });

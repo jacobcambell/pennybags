@@ -22,6 +22,11 @@ const CreateRoom = () => {
     }
 
     useEffect(() => {
+        if (localStorage.getItem('player_name') === null) {
+            history.push('/');
+            return;
+        }
+
         socket.off('success-createroom').on('success-createroom', (data) => {
             localStorage.setItem('room_name', data.room_name);
 
