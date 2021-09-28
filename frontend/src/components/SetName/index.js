@@ -18,7 +18,15 @@ const SetName = () => {
 
         // Save player name to local storage
         localStorage.setItem('player_name', name);
+
+        history.push('/home');
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('player_name') !== null) {
+            history.push('/home');
+        }
+    }, []);
 
     return (
         <div className="page">

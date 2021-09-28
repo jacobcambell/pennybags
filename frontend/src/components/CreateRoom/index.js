@@ -25,6 +25,8 @@ const CreateRoom = () => {
         socket.off('success-createroom').on('success-createroom', (data) => {
             localStorage.setItem('room_name', data.room_name);
             localStorage.setItem('secret', data.secret);
+
+            history.push('/game');
         })
     }, []);
 
