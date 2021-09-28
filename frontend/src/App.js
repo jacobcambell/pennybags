@@ -24,7 +24,7 @@ function App() {
   });
 
   useEffect(() => {
-    socket.on('error', (data) => {
+    socket.off('error').on('error', (data) => {
       alert('Error: ' + data.message);
     })
   }, []);

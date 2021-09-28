@@ -1,13 +1,13 @@
 import styles from './SetName.module.css';
 import { useContext, useState, useEffect } from 'react';
 import { SettingsContext } from '../../SettingsContext';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 const SetName = () => {
 
     const [name, setName] = useState('');
-    const { settings, setSettings } = useContext(SettingsContext);
+    const { settings, setSettings, socket } = useContext(SettingsContext);
     const history = useHistory();
 
     const updateName = () => {
@@ -30,6 +30,8 @@ const SetName = () => {
             <input onChange={(e) => { setName(e.target.value) }} type="text" className={styles.field} placeholder="Your Name" />
 
             <button onClick={updateName} className={styles.btn}>Let's Go</button>
+
+            <Link to="/create-room">go to create room</Link>
         </div>
     );
 }
