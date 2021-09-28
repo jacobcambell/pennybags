@@ -17,12 +17,6 @@ const socket = io('http://localhost:8000');
 
 function App() {
 
-  const [settings, setSettings] = useState({
-    // player_name: null,
-    // room_name: null,
-    // secret: null
-  });
-
   useEffect(() => {
     socket.off('error').on('error', (data) => {
       alert('Error: ' + data.message);
@@ -31,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <SettingsContext.Provider value={{ settings, setSettings, socket }}>
+      <SettingsContext.Provider value={{ socket }}>
         <Router>
           <Nav></Nav>
 

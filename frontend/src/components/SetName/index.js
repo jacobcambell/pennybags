@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 const SetName = () => {
 
     const [name, setName] = useState('');
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
     const history = useHistory();
 
     const updateName = () => {
@@ -15,8 +15,6 @@ const SetName = () => {
         if (name.length === 0) {
             return;
         }
-
-        setSettings({ ...settings, player_name: name });
 
         // Save player name to local storage
         localStorage.setItem('player_name', name);

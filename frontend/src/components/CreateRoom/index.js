@@ -6,7 +6,7 @@ import styles from './CreateRoom.module.css';
 
 const CreateRoom = () => {
 
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
 
     const [roomname, setRoomname] = useState();
     const [roompassword, setRoompassword] = useState();

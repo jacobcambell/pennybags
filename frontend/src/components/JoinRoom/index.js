@@ -8,21 +8,12 @@ import { SettingsContext } from '../../SettingsContext';
 const JoinRoom = () => {
 
     const [roomList, setRoomList] = useState([]);
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
     const history = useHistory();
 
     useEffect(() => {
         socket.on('room-list', (data) => {
             setRoomList(data);
-        })
-
-        socket.on('success', (data) => {
-            // Update the state with their secret and room name
-            setSettings({
-                ...settings,
-                room_name: data.room_name,
-                secret: data.secret
-            });
         })
 
         socket.emit('list-rooms');

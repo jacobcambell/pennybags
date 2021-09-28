@@ -4,7 +4,7 @@ import { SettingsContext } from '../../../SettingsContext';
 
 const EventFeed = () => {
 
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
     const [eventFeed, setEventFeed] = useState([]);
 
     useEffect(() => {

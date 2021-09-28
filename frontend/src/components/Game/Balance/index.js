@@ -6,7 +6,7 @@ import { SettingsContext } from '../../../SettingsContext';
 const Balance = () => {
 
     const [balance, setBalance] = useState('0');
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
 
     useEffect(() => {
         // Load the player's current balance

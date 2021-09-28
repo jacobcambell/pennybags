@@ -4,7 +4,7 @@ import { SettingsContext } from '../../SettingsContext';
 
 const Debug = () => {
     // This component is to be used for debugging purposes
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
 
     return (
         <div className={styles.debug}>

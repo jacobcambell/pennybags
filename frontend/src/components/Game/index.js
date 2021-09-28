@@ -6,7 +6,7 @@ import EventFeed from "./EventFeed";
 import PlayerList from "./PlayerList";
 
 const Game = () => {
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
     const history = useHistory();
 
     return (

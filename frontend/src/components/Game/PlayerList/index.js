@@ -5,7 +5,7 @@ import { SettingsContext } from '../../../SettingsContext';
 
 const PlayerList = () => {
 
-    const { settings, setSettings, socket } = useContext(SettingsContext);
+    const { socket } = useContext(SettingsContext);
     const [players, setPlayers] = useState();
 
     useEffect(() => {
