@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { View, Text, SafeAreaView } from 'react-native';
 import { socket } from '../components/socket';
+
+const SocketContext = createContext<any>(null);
 
 const SocketProvider = ({ children }) => {
 
@@ -22,9 +24,9 @@ const SocketProvider = ({ children }) => {
     }, []);
 
     return (
-        <SafeAreaView>
-            {connected ? <Text>Connected</Text> : <Text>No connection :(</Text>}
-        </SafeAreaView>
+        <SocketContext.Provider value={''}>
+            {connected ? children : <Text>Trying to connect...</Text>}
+        </SocketContext.Provider>
     );
 }
 
