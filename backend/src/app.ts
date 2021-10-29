@@ -1,9 +1,40 @@
 import { Server } from "socket.io";
+import { makeID } from "./makeID";
 
 const io = new Server({});
 
-io.on("connection", (socket) => {
+interface User {
+    username: string;
+    secret: string;
+}
 
+let USERS: User[] = [];
+
+io.on("connection", (socket) => {
+    socket.on('create-user', (data) => {
+        const check = [
+            data.username
+        ];
+
+        if (check.includes(undefined)) {
+            return;
+        }
+
+        // Generate a random secret for this user
+        let secret = makeID(35);
+
+        // Add to users array
+        USERS.push({
+            username: data.username,
+            secret
+        });
+
+        // Tell client they joined successfully
+        socket.emit('register-success', {
+            username: data.username,
+            secret
+        })
+    })
 });
 
 io.listen(6000);
