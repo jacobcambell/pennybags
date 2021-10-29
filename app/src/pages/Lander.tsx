@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/core';
+import React, { useContext, useEffect, useState } from 'react'
 import { Image, SafeAreaView, Text, StyleSheet, TextInput, Pressable } from 'react-native';
 import { socket } from '../components/socket';
 import { Theme } from '../components/Theme';
+import { UserContext } from '../contexts/UserProvider';
 
 const Lander = () => {
 
+    const { setUsername, setSecret } = useContext(UserContext);
     const [name, setName] = useState('');
 
     const handleContinue = () => {
@@ -12,6 +15,17 @@ const Lander = () => {
             username: name
         })
     }
+
+    useFocusEffect(React.useCallback(() => {
+        socket.on('register-success', (data) => {
+            setUsername(data.username)
+            setSecret(data.secret)
+        })
+
+        return (() => {
+            socket.off('register-success')
+        })
+    }, []))
 
     return (
         <SafeAreaView style={styles.content}>
