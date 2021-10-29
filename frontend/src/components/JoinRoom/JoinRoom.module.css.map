@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,SAAS;EACjB,MAAM,EAAE,OAAO;CAClB",
-    "sources": [
-        "JoinRoom.module.scss"
-    ],
-    "names": [],
-    "file": "JoinRoom.module.css"
-}
