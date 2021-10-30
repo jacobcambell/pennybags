@@ -2,8 +2,8 @@ import React, { createContext, useState } from 'react'
 import Lander from '../pages/Lander';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text } from 'react-native';
 import { UserContext } from '../contexts/UserContext';
+import Portal from '../pages/Portal';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +21,7 @@ const UserProvider = ({ children }) => {
                             <Stack.Screen name="Lander" component={Lander} />
                         </Stack.Navigator>
                     </NavigationContainer> :
-                    <Text>You have a username! {username}</Text>
+                    <Portal></Portal>
             }
         </UserContext.Provider>
     );
