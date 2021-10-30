@@ -3,8 +3,7 @@ import Lander from '../pages/Lander';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text } from 'react-native';
-
-export const UserContext = createContext<any>(null);
+import { UserContext } from '../contexts/UserContext';
 
 const Stack = createNativeStackNavigator();
 

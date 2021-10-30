@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Image, SafeAreaView, Text, StyleSheet, TextInput, Pressable } from 'react-native';
 import { socket } from '../components/socket';
 import { Theme } from '../components/Theme';
-import { UserContext } from '../contexts/UserProvider';
+import { UserContext } from '../contexts/UserContext';
 
 const Lander = () => {
 

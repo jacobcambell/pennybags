@@ -1,8 +1,7 @@
-import React, { createContext, useEffect, useState } from 'react'
-import { View, Text, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Text } from 'react-native';
 import { socket } from '../components/socket';
-
-const SocketContext = createContext<any>(null);
+import { SocketContext } from '../contexts/SocketContext';
 
 const SocketProvider = ({ children }) => {
 
